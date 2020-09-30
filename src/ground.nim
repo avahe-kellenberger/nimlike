@@ -1,6 +1,8 @@
 import
   nico,
-  api / [aabb, renderable, vector2d]
+  api / [renderable, vector2d]
+
+export renderable, vector2d
 
 type Ground* = ref object of Renderable
   color: int

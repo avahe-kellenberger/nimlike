@@ -1,4 +1,5 @@
 import vector2d
+export vector2d
 
 type AABB* = ref object of RootObj
   location*: Vector

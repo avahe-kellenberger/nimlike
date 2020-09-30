@@ -1,4 +1,10 @@
-import aabb
+import
+  aabb,
+  vector2d
+
+export
+  aabb,
+  vector2d
 
 type Renderable* = ref object of AABB
 

@@ -1,11 +1,13 @@
 import nico, nico/backends/common
-import ground
+
+import
+  ground
 
 var 
   buttonDown = false
   groundPalette: Palette
 
-let groundTexture: Ground = newGround(0, 10, 10, 32, 32)
+let groundTexture: Ground = newGround(3, 10, 10, 32, 32)
 
 proc gameInit() =
   loadFont(0, "font.png")
