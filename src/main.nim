@@ -1,19 +1,23 @@
-import nico
-import animatedactor
+import nico, nico/backends/common
+import ground
 
-var buttonDown = false
+var 
+  buttonDown = false
+  groundPalette: Palette
 
-let foo: AnimatedActor = AnimatedActor()
-foo.update(0.1)
+let groundTexture: Ground = newGround(0, 10, 10, 32, 32)
 
 proc gameInit() =
   loadFont(0, "font.png")
+  groundPalette = loadPaletteFromGPL("palettes/ground.gpl")
+  setPalette(groundPalette)
 
 proc gameUpdate(dt: float32) =
   buttonDown = key(K_a)
 
 proc gameDraw() =
   cls()
+  groundTexture.render()
   setColor(if buttonDown: 7 else: 3)
   printc("hello world", screenWidth div 2, screenHeight div 2)
 

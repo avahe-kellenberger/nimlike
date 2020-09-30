@@ -1,6 +1,6 @@
 import aabb
 
-type Renderable* = AABB
+type Renderable* = ref object of AABB
 
 method render*(this: Renderable) {.base.} = discard
 
