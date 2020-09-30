@@ -18,7 +18,7 @@ proc gameUpdate(dt: float32) =
 proc gameDraw() =
   cls()
   groundTexture.render()
-  setColor(if buttonDown: 7 else: 3)
+  setColor(if buttonDown: 2 else: 3)
   printc("hello world", screenWidth div 2, screenHeight div 2)
 
 nico.init("myOrg", "myApp")
