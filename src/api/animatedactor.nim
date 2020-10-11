@@ -1,6 +1,8 @@
 import actor
 
-type AnimatedActor* = ref object of Actor
+type
+  AnimatedActorRef* = ref Actor
+  AnimatedActor* = object of Actor
   # TODO: Implement sprites
   # See https://github.com/ftsf/nico/blob/master/API.md#sprites
 

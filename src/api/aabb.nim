@@ -1,9 +1,11 @@
 import vector2d
 export vector2d
 
-type AABB* = ref object of RootObj
-  location*: Vector
-  size*: Vector
+type
+  AABB* = object of RootObj
+    location*: Vector
+    size*: Vector
+  AABBRef* = ref AABB
 
 method x*(this: AABB): float {.base.} = this.location.x
 method y*(this: AABB): float {.base.} = this.location.y

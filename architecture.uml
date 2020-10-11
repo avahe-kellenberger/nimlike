@@ -1,0 +1,23 @@
+@startuml
+class AABB {
+  -location: Vector
+  -size: Vector
+}
+
+class Renderable extends AABB {
+  +{abstract} render()
+}
+
+class RenderObject extends Renderable {
+  +{abstract} update(deltaTime: float)
+}
+
+class Actor extends RenderObject
+
+class AnimatedActor extends Actor {
+  +{abstract} updateAnimation(deltaTime: float)
+  +{abstract} renderCurrentAnimation()
+  +update(deltaTime: float)
+  +render()
+}
+@enduml

@@ -1,5 +1,7 @@
 import renderobject
 
-type Actor* = ref object of RenderObject
+type 
+  Actor* = object of RenderObject
+  ActorRef* = ref Actor
 
 # TODO: Actors are behavior-driven.
