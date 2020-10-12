@@ -5,7 +5,6 @@ type
   AABB* = object of RootObj
     location*: Vector
     size*: Vector
-  AABBRef* = ref AABB
 
 method x*(this: AABB): float {.base.} = this.location.x
 method y*(this: AABB): float {.base.} = this.location.y

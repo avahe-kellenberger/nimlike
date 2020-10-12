@@ -1,6 +1,5 @@
 import renderable
 
-type RenderObject* = object of Renderable
-type RenderObjectRef* = ref RenderObject
+type RenderObject* = ref object of Renderable
 
 method update*(this: RenderObject, deltaTime: float) {.base.} = discard

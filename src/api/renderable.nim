@@ -6,9 +6,7 @@ export
   aabb,
   vector2d
 
-type
-  Renderable* = object of AABB
-  RenderableRef* = ref Renderable
+type Renderable* = ref object of AABB
 
 method render*(this: Renderable) {.base.} = discard
 

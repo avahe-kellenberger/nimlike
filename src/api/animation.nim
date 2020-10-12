@@ -1,10 +1,9 @@
-import math
-
-type Animation* = object
-  spritesheet: int
-  frameDuration: float
-  frameIndices: seq[int]
-  duration: float
+type
+  Animation* = ref object
+    spritesheet: int
+    frameDuration: float
+    frameIndices: seq[int]
+    duration: float
 
 proc newAnimation*(
   spritesheet: int,
@@ -22,12 +21,13 @@ proc newAnimation*(
     duration: frameDuration * frameIndices.len.float
   )
 
+proc duration*(this: Animation): float = this.duration
+
 proc getCurrentFrame*(this: Animation, elapsed: float): int =
   ## Gets the frame index based on the time elapsed
   ## since the animation first started.
-  let delta = elapsed mod this.duration
   var currentTime: float
-  while currentTime < delta:
+  while currentTime < elapsed:
     currentTime += this.frameDuration
     result += 1
 
