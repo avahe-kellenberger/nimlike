@@ -1,27 +1,21 @@
-import nico, nico/backends/common
+import nico
 
-import
-  ground
+import player as plyr
 
-var 
-  buttonDown = false
-  groundPalette: Palette
-
-let groundTexture: Ground = newGround(3, 10, 10, 32, 32)
+var player: Player
 
 proc gameInit() =
   loadFont(0, "font.png")
-  groundPalette = loadPaletteFromGPL("palettes/ground.gpl")
-  setPalette(groundPalette)
+  let palette = loadPaletteFromGPL("palettes/log.gpl")
+  setPalette(palette)
+  player = newPlayer()
 
 proc gameUpdate(dt: float32) =
-  buttonDown = key(K_a)
+  player.update(dt)
 
 proc gameDraw() =
   cls()
-  groundTexture.render()
-  setColor(if buttonDown: 2 else: 3)
-  printc("hello world", screenWidth div 2, screenHeight div 2)
+  player.render()
 
 nico.init("myOrg", "myApp")
 nico.createWindow("myApp", 128, 128, 4, false)

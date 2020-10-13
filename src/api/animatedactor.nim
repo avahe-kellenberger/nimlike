@@ -5,30 +5,35 @@ import actor, animation
 export actor, animation
 
 type AnimatedActor* = ref object of Actor
-    animations: Table[string, Animation]
-    currentAnimation: Animation
-    currentAnimationTime: float
+  animations: Table[string, Animation]
+  currentAnimation: Animation
+  currentAnimationTime: float
 
-proc newAnimatedActor*(): AnimatedActor = AnimatedActor()
+proc newAnimatedActor*(): AnimatedActor =
+  AnimatedActor()
 
-proc addAnimation*(this: var AnimatedActor, name: string, animation: Animation) =
+method addAnimation*(this: AnimatedActor, name: string, animation: Animation) {.base.} =
   this.animations[name] = animation
 
-proc setAnimation*(this: AnimatedActor, name: string) =
-  this.currentAnimation = this.animations[name]
+method resetAnimation*(this: AnimatedActor) {.base.} =
   this.currentAnimationTime = 0f
 
-proc updateCurrentAnimation(this: AnimatedActor, deltaTime: float) =
+method setAnimation*(this: AnimatedActor, name: string) {.base.} =
+  this.currentAnimation = this.animations[name]
+  this.resetAnimation()
+
+method updateCurrentAnimation(this: AnimatedActor, deltaTime: float) {.base.} =
   ## Updates the animation based on elapsed time.
   ## This is automatically invoked by update()
   this.currentAnimationTime =
     (this.currentAnimationTime + deltaTime) mod this.currentAnimation.duration
 
-proc renderCurrentAnimation(this: AnimatedActor) =
+method renderCurrentAnimation(this: AnimatedActor) {.base.} =
   ## Renders the current animation frame.
   ## This is automatically invoked by render()
+  setSpritesheet(this.currentAnimation.spritesheet)
   let frame = this.currentAnimation.getCurrentFrame(this.currentAnimationTime)
-  spr(frame, 0, 0)
+  spr(frame.index, 0, 0, hflip = frame.hflip, vflip = frame.vflip)
 
 method update*(this: AnimatedActor, deltaTime: float) =
   this.updateCurrentAnimation(deltaTime)
