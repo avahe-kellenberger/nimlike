@@ -10,3 +10,4 @@ proc loadSpritesheet*(filename: string, sw, sh: int = 8): int =
   result = spritesheetCount
   spritesheetCount.inc
 
+  echo "Loaded sheet ", filename, " - spritesheetCount = ", spritesheetCount

@@ -2,8 +2,8 @@ import api / [animatedactor, animation, spritesheetloader]
 
 export animatedactor, animation
 
-var spritesheetIndex: int = -1 
-let idleAnim = newAnimation(spritesheetIndex, 0.2, [5, 11, 17])
+var spritesheetIndex: int = -1
+let idleAnim = newAnimation(0.2, [5, 11, 17])
 
 type 
   Anim = enum
@@ -15,8 +15,9 @@ converter animToString(animation: Anim): string = $animation
 
 proc newPlayer*(): Player =
   if spritesheetIndex < 0:
-   spritesheetIndex = loadSpritesheet("character.png", 32, 32)
+    spritesheetIndex = loadSpritesheet(Idle, 32, 32)
 
-  result = Player()
+  result = Player(spritesheet: spritesheetIndex)
   result.addAnimation(Idle, idleAnim)
+  result.setAnimation(Idle)
 

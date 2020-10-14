@@ -5,12 +5,13 @@ import actor, animation
 export actor, animation
 
 type AnimatedActor* = ref object of Actor
+  spritesheet*: int
   animations: Table[string, Animation]
   currentAnimation: Animation
   currentAnimationTime: float
 
-proc newAnimatedActor*(): AnimatedActor =
-  AnimatedActor()
+proc newAnimatedActor*(spritesheet: int): AnimatedActor =
+  AnimatedActor(spritesheet: spritesheet)
 
 method addAnimation*(this: AnimatedActor, name: string, animation: Animation) {.base.} =
   this.animations[name] = animation
@@ -31,7 +32,7 @@ method updateCurrentAnimation(this: AnimatedActor, deltaTime: float) {.base.} =
 method renderCurrentAnimation(this: AnimatedActor) {.base.} =
   ## Renders the current animation frame.
   ## This is automatically invoked by render()
-  setSpritesheet(this.currentAnimation.spritesheet)
+  setSpritesheet(this.spritesheet)
   let frame = this.currentAnimation.getCurrentFrame(this.currentAnimationTime)
   spr(frame.index, 0, 0, hflip = frame.hflip, vflip = frame.vflip)
 
