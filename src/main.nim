@@ -18,5 +18,5 @@ proc gameDraw() =
   player.render()
 
 nico.init("myOrg", "myApp")
-nico.createWindow("myApp", 128, 128, 4, false)
+nico.createWindow("myApp", 128, 128, 1, false)
 nico.run(gameInit, gameUpdate, gameDraw)

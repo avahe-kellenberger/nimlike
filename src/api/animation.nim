@@ -73,13 +73,13 @@ proc getCurrentFrame*(this: Animation, elapsed: float): AnimationFrame =
   var currentTime: float
   for i in countup(this.frames.low, this.frames.high):
     currentTime += this.frameDuration
-    if currentTime >= elapsed:
+    if currentTime > elapsed:
       return this.frames[i]
 
   if this.reverseAtEnd:
     for i in countdown(this.frames.high - 1, this.frames.low + 1):
       currentTime += this.frameDuration
-      if currentTime >= elapsed:
+      if currentTime > elapsed:
         return this.frames[i]
 
   raise newException(
