@@ -3,7 +3,7 @@ import api / [animatedactor, animation, spritesheetloader]
 export animatedactor, animation
 
 var spritesheetIndex: int = -1
-let idleAnim = newAnimation(0.2, [5, 11, 17])
+let idleAnim = newAnimation(0.2, [5, 11, 17], true)
 
 type 
   Anim = enum
